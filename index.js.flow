@@ -6,7 +6,7 @@ import { Component } from 'react';
 
 import type { Node } from 'react';
 import type { FormField, Methods } from 'rn-fetch-blob';
-import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet'
+import type { ViewStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet';
 
 export type AssetId = number;
 
@@ -20,7 +20,8 @@ export type Source = {
   expiration?: number,
   headers?: { [key: string]: string },
   method?: Methods,
-  uri: string
+  uri: string,
+  uniqueIdForCache: string,
 };
 
 export type TableContent = {
@@ -43,7 +44,12 @@ export type Props = {
   minScale?: number,
   singlePage?: boolean,
   onError?: (error: Error) => void,
-  onLoadComplete?: (numberOfPages: number, path: string, size: { height: number, width: number }, tableContents: ?TableContent[]) => void,
+  onLoadComplete?: (
+    numberOfPages: number,
+    path: string,
+    size: { height: number, width: number },
+    tableContents: ?(TableContent[]),
+  ) => void,
   onLoadProgress?: (percent: number) => void,
   onPageChanged?: (page: number, numberOfPages: number) => void,
   onPageSingleTap?: (page: number, x: number, y: number) => void,
@@ -55,7 +61,7 @@ export type Props = {
   source: AssetId | Source,
   spacing?: number,
   style?: ViewStyleProp,
-  testID?: string
+  testID?: string,
 };
 
 declare export default class Pdf extends Component<Props> {
